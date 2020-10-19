@@ -66,11 +66,7 @@ public class MainView extends AppLayout implements RouterLayout, PageConfigurato
         Tab readingChallenge = createTab(VaadinIcon.HOURGLASS, ReadingGoalView.class, "Goal");
         Tab stats = createTab(VaadinIcon.TRENDING_UP, StatisticsView.class, "Statistics");
         Tab settings = createTab(VaadinIcon.COG_O, SettingsView.class, "Settings");
-
-        Tabs tabs = new Tabs();
-        tabs.add(myBooks, readingChallenge, stats, settings);
-
-        return tabs;
+        return new Tabs(myBooks, readingChallenge, stats, settings);
     }
 
     private static Tab createTab(VaadinIcon icon, Class<? extends Component> viewClass,
