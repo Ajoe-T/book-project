@@ -43,13 +43,7 @@ import java.util.HashMap;
 @CssImport("./styles/shared-styles.css")
 public class MainView extends AppLayout implements RouterLayout, PageConfigurator {
     public MainView() {
-        HorizontalLayout horizontalLayout = new HorizontalLayout();
-        Anchor logout = new Anchor("/logout", "Log out");
-        logout.addClassName("logout");
-        horizontalLayout.add(logout);
-        horizontalLayout.expand(logout);
-
-        addToNavbar(true, centerTabs(), horizontalLayout);
+        addToNavbar(true, centerTabs(), createLogoutLayout());
     }
 
     private FlexLayout centerTabs() {
@@ -85,6 +79,15 @@ public class MainView extends AppLayout implements RouterLayout, PageConfigurato
         a.add(icon.create());
         a.add(title);
         return a;
+    }
+
+    private HorizontalLayout createLogoutLayout() {
+        Anchor logout = new Anchor("/logout", "Log out");
+        logout.addClassName("logout");
+
+        HorizontalLayout horizontalLayout = new HorizontalLayout(logout);
+        horizontalLayout.expand(logout);
+        return horizontalLayout;
     }
 
     @Override
