@@ -75,10 +75,10 @@ public class MainView extends AppLayout implements RouterLayout, PageConfigurato
         return tab;
     }
 
-    private static <T extends HasComponents> T addLink(T a, VaadinIcon icon, String title) {
-        a.add(icon.create());
-        a.add(title);
-        return a;
+    private static <T extends HasComponents> T addLink(T anchor, VaadinIcon icon, String title) {
+        anchor.add(icon.create());
+        anchor.add(title);
+        return anchor;
     }
 
     private HorizontalLayout createLogoutLayout() {
