@@ -43,23 +43,22 @@ import java.util.HashMap;
 @CssImport("./styles/shared-styles.css")
 public class MainView extends AppLayout implements RouterLayout, PageConfigurator {
     public MainView() {
-        Tabs tabs = addTabs();
-
+        HorizontalLayout horizontalLayout = new HorizontalLayout();
         Anchor logout = new Anchor("/logout", "Log out");
         logout.addClassName("logout");
+        horizontalLayout.add(logout);
+        horizontalLayout.expand(logout);
 
-        HorizontalLayout h = new HorizontalLayout();
+        addToNavbar(true, centerTabs(), horizontalLayout);
+    }
 
-        FlexLayout centreTabs = new FlexLayout();
-        centreTabs.setSizeFull();
-        centreTabs.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
-        centreTabs.setAlignItems(FlexComponent.Alignment.CENTER);
-        centreTabs.add(tabs);
-
-        h.add(logout);
-        h.expand(logout);
-
-        addToNavbar(true, centreTabs, h);
+    private FlexLayout centerTabs() {
+        FlexLayout centerTabs = new FlexLayout();
+        centerTabs.setSizeFull();
+        centerTabs.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
+        centerTabs.setAlignItems(FlexComponent.Alignment.CENTER);
+        centerTabs.add(addTabs());
+        return centerTabs;
     }
 
     private Tabs addTabs() {
@@ -90,10 +89,6 @@ public class MainView extends AppLayout implements RouterLayout, PageConfigurato
         a.add(icon.create());
         a.add(title);
         return a;
-    }
-
-    private void centreTabs() {
-
     }
 
     @Override
